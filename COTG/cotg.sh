@@ -1,11 +1,9 @@
-# cotg.sh
-
 #!/bin/sh
 
 today=$(date +%F)
 
 # This is the directory that you have your cotgoff txt file in that you can edit
-input="$HOME/[TEXT FILE LOCATION]"
+input="$HOME/[PATH TO TXT FILE]/cotgoff.txt"
 
 # Start Shift Options       End Shift Options
 ## Morning                  Morning
@@ -13,6 +11,13 @@ input="$HOME/[TEXT FILE LOCATION]"
 ## Evening                  Evening
 start_shift="[YOUR SHIFT START]"
 end_shift="[YOUR SHIFT END]"
+
+# VSOC TEAM
+vsoc="[VSOC NUMBER]"
+
+# Company Codename
+code_1="[CODENAME 1]"
+code_2="[CODENAME 2]"
 
 # Variables
 ## $user is your username
@@ -27,15 +32,11 @@ user_off=$2
 cotg=0
 
 # Look up bash colors and change to what you want to 
-# \033[1;31;48m   -   RED
-# \033[1;32;48m   -   GREEN
-# \033[1;33;48m   -   YELLOW
-# \033[00m        -   BLACK
-col_1='\033[1;32;48m'
-col_2='\033[1;33;48m'
-col_3='\033[1;31;48m'
-col_4='\033[1;34;48m'
-col_5='\033[00m'
+col_1='\033[1;32;48m' # GREEN
+col_2='\033[1;33;48m' # YELLOW
+col_3='\033[1;31;48m' # RED
+col_4='\033[1;34;48m' # BLUE
+col_5='\033[00m'      # BLACK
 
 if [ "$on_off" = on ]; then
   
@@ -44,7 +45,7 @@ if [ "$on_off" = on ]; then
   echo "$col_1"
   echo "Good $start_shift $user"
   echo "$col_4"
-  echo "COTG - ON"
+  echo "COTG - ON - $vsoc"
   echo "_________________________________________________"
   echo "$col_5"
   {
@@ -70,7 +71,7 @@ elif [ "$on_off" = off ]; then
   echo "$col_1"
   echo "Good $start_shift $user"
   echo "$col_4"
-  echo "COTG - OFF VSOC"
+  echo "COTG - OFF - $vsoc"
   echo "_________________________________________________"
   echo "$col_5"
 
@@ -106,14 +107,14 @@ elif [ "$on_off" = off ]; then
   done < "$input"
 
   echo " "
-  }>tempfileVSOC.txt
-  cat tempfileVSOC.txt | gpg --clearsign
+  }>tempfile1.txt
+  cat tempfile2.txt | gpg --clearsign
   echo "$col_4"
   echo "_________________________________________________"
   echo "$col_2"
 
   # Echo SANDSTONE message to $user and encrypt with gpg
-  echo "COTG - OFF - SANDSTONE"
+  echo "COTG - OFF - $code_1"
   echo "_________________________________________________"
   echo "$col_5"
 
@@ -149,14 +150,14 @@ elif [ "$on_off" = off ]; then
   done < "$input"
 
   echo " "
-  }>tempfileSANDSTONE.txt
-  cat tempfileSANDSTONE.txt | gpg --clearsign
+  }>tempfile2.txt
+  cat tempfile2.txt | gpg --clearsign
   echo "$col_2"
   echo "_________________________________________________"
   echo "$col_3"
 
    # Echo SANDSTONE message to $user and encrypt with gpg
-  echo "COTG - OFF - ARCHES"
+  echo "COTG - OFF - $code_2"
   echo "_________________________________________________"
   echo "$col_5"
 
@@ -192,8 +193,8 @@ elif [ "$on_off" = off ]; then
   done < "$input"
 
   echo " "
-  }>tempfileARCHES.txt
-  cat tempfileARCHES.txt | gpg --clearsign
+  }>tempfile3.txt
+  cat tempfile3.txt | gpg --clearsign
   echo "$col_3"
   echo "_________________________________________________"
   echo "$col_1"
@@ -201,7 +202,7 @@ elif [ "$on_off" = off ]; then
   echo "$col_5"
 
   # Remove the temp files so that they do not clutter
-  rm -r tempfileVSOC.txt
-  rm -r tempfileSANDSTONE.txt
-  rm -r tempfileARCHES.txt
+  rm -r tempfile1.txt
+  rm -r tempfile2.txt
+  rm -r tempfile3.txt
 fi
