@@ -88,13 +88,13 @@ elif [ "$on_off" = off ]; then
   echo " "
 
   while IFS= read -r line; do
-    if [ "$line" = VSOC ]; then
+    if [ "$line" = "$vsoc" ]; then
       cotg=0
       continue
-    elif [ "$line" = SANDSTONE ]; then
+    elif [ "$line" = "$code_1" ]; then
       cotg=1
       continue
-    elif [ "$line" = ARCHES ]; then
+    elif [ "$line" = "$code_2" ]; then
       cotg=2
       continue
     else
@@ -113,12 +113,12 @@ elif [ "$on_off" = off ]; then
   echo "_________________________________________________"
   echo "$col_2"
 
-  # Echo SANDSTONE message to $user and encrypt with gpg
+  # Echo CODE_1 message to $user and encrypt with gpg
   echo "COTG - OFF - $code_1"
   echo "_________________________________________________"
   echo "$col_5"
 
-  # SANDSTONE COTG OFF
+  # CODE_1 COTG OFF
   {
   echo "[$today]"
   echo "[COTG]"
@@ -131,13 +131,13 @@ elif [ "$on_off" = off ]; then
   echo " "
 
   while IFS= read -r line; do
-    if [ "$line" = VSOC ]; then
+    if [ "$line" = "$vsoc" ]; then
       cotg=0
       continue
-    elif [ "$line" = SANDSTONE ]; then
+    elif [ "$line" = "$code_1" ]; then
       cotg=1
       continue
-    elif [ "$line" = ARCHES ]; then
+    elif [ "$line" = "$code_2" ]; then
       cotg=2
       continue
     else
@@ -156,12 +156,12 @@ elif [ "$on_off" = off ]; then
   echo "_________________________________________________"
   echo "$col_3"
 
-   # Echo SANDSTONE message to $user and encrypt with gpg
+   # Echo CODE_2 message to $user and encrypt with gpg
   echo "COTG - OFF - $code_2"
   echo "_________________________________________________"
   echo "$col_5"
 
-  # SANDSTONE COTG OFF
+  # CODE_2 COTG OFF
   {
   echo "[$today]"
   echo "[COTG]"
@@ -174,13 +174,13 @@ elif [ "$on_off" = off ]; then
   echo " "
 
   while IFS= read -r line; do
-    if [ "$line" = VSOC ]; then
+    if [ "$line" = "$vsoc" ]; then
       cotg=0
       continue
-    elif [ "$line" = SANDSTONE ]; then
+    elif [ "$line" = "$code_1" ]; then
       cotg=1
       continue
-    elif [ "$line" = ARCHES ]; then
+    elif [ "$line" = "$code_2" ]; then
       cotg=2
       continue
     else
