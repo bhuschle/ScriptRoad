@@ -2,6 +2,7 @@
 Useful Scripts to use for everyday GS activities
 
 ## COTG
+### cotg.sh
 
 Pretty straight forware COTG script  
 
