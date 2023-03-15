@@ -19,6 +19,23 @@ cotg () {
 }
 ```
 
+## SOC
+
+soc.py is a very thorough program that allows you to scan :
+- IP Addresses
+- Hash (MD5 / SHA1 / SHA256)
+- URL Addresses
+
+If you have any trouble running the program just use this command :
+- soc -h
+- soc --help
+
+add this to your .bash_aliases to be able to run from anywhere
+```
+soc () {
+ 	python3 $HOME/[PATH TO PROGRAM]/soc.py "$1" "$2"
+}
+```
 
 ## Alienvault Scripts
 
