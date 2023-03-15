@@ -37,6 +37,20 @@ soc () {
 }
 ```
 
+API Keys can be gotten for this program for free from :
+- https://www.virustotal.com/
+  - Then create an account
+  - Click on your profile
+  - Click API
+  - Copy API Key into soc.py line **116**
+- https://www.ipqualityscore.com/
+  - Register Account
+  - Click on your account
+  - Click View API Docs
+  - Click Malicious URL Scanner
+  - Scroll down until you see Private Key
+  - Copy Private Key into soc.py line **386**
+
 ## Alienvault Scripts
 
 ### av_match_sd.py
