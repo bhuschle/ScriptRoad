@@ -21,6 +21,8 @@ cotg () {
 
 ## SOC
 
+### soc.py
+
 soc.py is a very thorough program that allows you to scan :
 - IP Addresses
 - Hash (MD5 / SHA1 / SHA256)
