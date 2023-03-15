@@ -15,7 +15,7 @@ Also put the cotgoff.txt file inside of the same folder as your cotg.sh script
 add this to your .bash_aliases to be able to run from anywhere
 ```
 cotg () {
- 	sh $HOME/[PATH TO PROGRAM FOLDER]/cotg/cotg.sh "$1" "$2"
+  sh $HOME/[PATH TO PROGRAM FOLDER]/cotg/cotg.sh "$1" "$2"
 }
 ```
 
@@ -33,7 +33,7 @@ If you have any trouble running the program just use this command :
 add this to your .bash_aliases to be able to run from anywhere
 ```
 soc () {
- 	python3 $HOME/[PATH TO PROGRAM]/soc.py "$1" "$2"
+  python3 $HOME/[PATH TO PROGRAM]/soc.py "$1" "$2"
 }
 ```
 
