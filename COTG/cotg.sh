@@ -13,7 +13,7 @@ start_shift="[YOUR SHIFT START]"
 end_shift="[YOUR SHIFT END]"
 
 # VSOC TEAM
-vsoc="[VSOC NUMBER]"
+vsoc="[VSOC_#]"
 
 # Company Codename
 code_1="[CODENAME 1]"
