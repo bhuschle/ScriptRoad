@@ -1,4 +1,4 @@
-VSOC
+VSOC_#
 [Lookout]
 # None
 
@@ -8,7 +8,7 @@ VSOC
 [Peer Review]
 # None
 
-SANDSTONE
+CODENAME 1
 [Lookout]
 # None
 
@@ -18,7 +18,7 @@ SANDSTONE
 [Peer Review]
 # None
 
-ARCHES
+CODENAME 2
 [Lookout]
 # None
 
