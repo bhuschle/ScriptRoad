@@ -51,6 +51,14 @@ API Keys can be gotten for this program for free from :
   - Scroll down until you see Private Key
   - Copy Private Key into soc.py line **386**
 
+If you are having trouble running the program you probably need to install requests :
+- sudo apt update
+- sudo apt install python3-pip
+- python -m pip install requests
+
+I suggest using and making sure that python3 is installed on your system  
+This is what I used to program the script so it will be smoother then python / python2 
+
 ## Alienvault Scripts
 
 ### av_match_sd.py
