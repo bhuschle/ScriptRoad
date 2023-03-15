@@ -62,7 +62,7 @@ If you are having trouble running the program you probably need to install reque
 I suggest using and making sure that python3 is installed on your system  
 This is what I used to program the script so it will be smoother then python / python2 
 
-## Alienvault Scripts
+## Alienvault
 
 ### av_match_sd.py
 
