@@ -83,3 +83,16 @@ av_sd [FOLDER NAME WITH FILES INSIDE]
 
 I personally make the folder name [mm-dd-yy] so that it is easy to remember and write  
 Save files inside folder and then run script
+
+## Sumo Logic
+
+### sumo-30day.py
+
+add this to your .bash_aliases to be able to run from anywhere
+```
+sumo_30day () {
+  clear
+  python3 $HOME/[PATH TO PROGRAM]/sumo-30day.py
+}
+```
+This will go attach to the sumologic API and delete any collectors that have been offline for more then 30 days
