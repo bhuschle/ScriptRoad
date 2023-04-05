@@ -39,6 +39,23 @@ def base64_encode(access_id, access_key):
   base64_key = base64_bytes.decode("ascii")
   return base64_key
 
+def print_logo():
+  print()
+  print('  %%%%%%%%%%%%%   %%%%%%%%%%%%%')
+  print(' %%                           %%')
+  print(' %%   #########   #########   %%')
+  print(' %%  ##########   ##########  %%')
+  print(' %%  #######################  %%')  
+  print('             ##   ##   ')
+  print('  %%   ###################   %%')
+  print('   %%   #######   #######   %%')
+  print('    %%   ######   ######   %%')
+  print('     %%   #####   #####   %%')
+  print('      %%   ####   ####   %%       Property of GuardSight, Inc')
+  print('       %%               %%        Not to be redistributed without Authorization')
+  print('        %%%%%%%   %%%%%%%         Author : bhuschle')  
+
+
 
 url_1 = 'https://api.us2.sumologic.com/api/v1/collectors/offline?aliveBeforeDays=30'
 url_2 = 'https://api.sumologic.com/api/v1/collectors/offline?aliveBeforeDays=30'
@@ -60,6 +77,13 @@ ironwood_res = requests.delete(url_1, headers=ironwood_headers)
 oak_res = requests.delete(url_2, headers=oak_headers)
 yosemite_res = requests.delete(url_2, headers=yosemite_headers)
 zion_res = requests.delete(url_1, headers=zion_headers)
+
+# Print out Logo and information
+print_logo()
+print()
+print('SUMO LOGIC - Collectors Offline for 30+ days')
+print('--------------------------------------------')
+print()
 
 # Print out a response for each customer 
 print('Chestnut    : ' + str(chestnut_res.status_code))
