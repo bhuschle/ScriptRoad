@@ -1,0 +1,27 @@
+###############################################################################
+# NAME: [Program Name]                                                        #
+#                                                                             #
+# VERSION: [Date Created]                                                     #
+#                                                                             #
+# SYNOPSIS: [What does it do]                                                 #
+#                                                                             #
+# DESCRIPTION: [How does it do it]                                            #
+#                                                                             #
+# INPUT: [What inputs are needed]                                             #
+#                                                                             #
+# OUTPUT: [What does it output]                                               #
+#                                                                             #
+# PRE-RUNTIME NOTES: [What should the user know before using it]              #
+#                                                                             #
+# AUTHORS: GuardSight, Inc. (@guardsight) ; [GS Email address]                #
+#                                                                             #
+# LICENSE: GPLv3                                                              #
+#                                                                             #
+# DISCLAIMER: All work produced by Authors is provided “AS IS”. Authors make  #
+#             no warranties, express or implied, and hereby disclaims any and #
+#             all warranties, including, but not limited to, any warranty of  #
+#             fitness, application, et cetera, for any particular purpose,    #
+#             use case, or application of this script.                        #
+#                                                                             #
+# (c) 2022 GuardSight, Inc.                                                   #
+###############################################################################
