@@ -1,208 +1,74 @@
-#!/bin/sh
+#!/bin/bash
 
-today=$(date +%F)
+# Configuration variables
+. /path/to/config.cfg
+. /path/to/helper.sh
 
-# This is the directory that you have your cotgoff txt file in that you can edit
-input="$HOME/[PATH TO TXT FILE]/cotgoff.txt"
+# Print colored output
+print_color() {
+  echo -e "$1 $2 $NC"
+}
 
-# Start Shift Options       End Shift Options
-## Morning                  Morning
-## Afternoon                Afternoon
-## Evening                  Evening
-start_shift="[YOUR SHIFT START]"
-end_shift="[YOUR SHIFT END]"
+# Print line separator
+print_line_sep() {
+  echo -e "$YELLOW ________________________________________________________________$NC"
+}
 
-# VSOC TEAM
-vsoc="[VSOC_#]"
-
-# Company Codename
-code_1="[CODENAME 1]"
-code_2="[CODENAME 2]"
-
-# Variables
-## $user is your username
-## $on_off is whether or not you are COTGON or COTGOFF
-## $user_off is the username of the person you are transferring to
-### This variable will only be used during COTGOFF never on COTGON
-user="[YOUR USERNAME]"
-on_off=$1
-user_off=$2
-
-# KEEP THIS VARIABLE AT 0
-cotg=0
-
-# Look up bash colors and change to what you want to 
-col_1='\033[1;32;48m' # GREEN
-col_2='\033[1;33;48m' # YELLOW
-col_3='\033[1;31;48m' # RED
-col_4='\033[1;34;48m' # BLUE
-col_5='\033[00m'      # BLACK
-
-if [ "$on_off" = on ]; then
-  
-  # Take over COTG at start of shift
-  # Echo message to $user and encrypt with gpg
-  echo "$col_1"
-  echo "Good $start_shift $user"
-  echo "$col_4"
-  echo "COTG - ON - $vsoc"
-  echo "_________________________________________________"
-  echo "$col_5"
+# Handle "on" operation
+handle_on() {
+  print_color $GREEN "Good $start_shift $user"
+  print_color $BLUE "COTG - ON - VSOC_T1"
+  print_line_sep
   {
-  echo "[$today]"
-  echo "# Acknowledging receipt of HOD transfer"
-  echo "# Current Guardsight VSOC Team 1 HOD is $user"
-  echo " "
-  }>tempfile.txt
-  cat tempfile.txt | gpg --clearsign
-  echo "$col_4"
-  echo "_________________________________________________"
-  echo "$col_1"
-  echo "HAVE A GOOD SHIFT $user"
-  echo "$col_5"
+    echo -e "[ $today ]"
+    echo -e "# Acknowledging receipt of HOD transfer"
+    echo -e "# Current Guardsight VSOC Team 1 HOD is $user\n"
+  } | gpg --clearsign
 
-  # Remove the temp files so that they do not clutter
-  rm -r tempfile.txt
+  print_line_sep
+  print_color $GREEN "HAVE A GOOD SHIFT $user"
 
-elif [ "$on_off" = off ]; then
+}
 
-  # Give up COTG at end of shift
-  # Echo VSOC message to $user and encrypt with gpg
-  echo "$col_1"
-  echo "Good $start_shift $user"
-  echo "$col_4"
-  echo "COTG - OFF - $vsoc"
-  echo "_________________________________________________"
-  echo "$col_5"
-
-  # VSOC COTG OFF
+# Handle "off" operation
+handle_off() {
+  print_color $GREEN "Good $start_shift $user"
+  print_line_sep
+  print_color $BLUE "COTG - OFF - VSOC_T1"
   {
-  echo "[$today]"
-  echo "[COTG]"
-  echo ""
-  echo "[Changed From -> To]"
-  echo "# bhuschle ->"
-  echo "Primary: $user_off"
-  echo "Secondary: Team"
+    echo "[ $today ]"
+    echo -e "[ COTG ]\n[ From -> To ]"
+    echo -e "[ $user -> $1 ]\n"
+    echo -e "[ Lookout ]\n$vsoc_lookout \n"
+    echo -e "[ Notables ]\n$vsoc_notables\n"
+    echo -e "[ Peer Review ]\n$vsoc_peer_review\n"
+  } | gpg --clearsign
 
-  echo " "
-
-  while IFS= read -r line; do
-    if [ "$line" = "$vsoc" ]; then
-      cotg=0
-      continue
-    elif [ "$line" = "$code_1" ]; then
-      cotg=1
-      continue
-    elif [ "$line" = "$code_2" ]; then
-      cotg=2
-      continue
-    else
-      if [ $cotg -eq 0 ]; then
-        echo "$line"
-      else
-        continue
-      fi
-    fi
-  done < "$input"
-
-  echo " "
-  }>tempfile1.txt
-  cat tempfile2.txt | gpg --clearsign
-  echo "$col_4"
-  echo "_________________________________________________"
-  echo "$col_2"
-
-  # Echo CODE_1 message to $user and encrypt with gpg
-  echo "COTG - OFF - $code_1"
-  echo "_________________________________________________"
-  echo "$col_5"
-
-  # CODE_1 COTG OFF
+  print_line_sep
+  print_color $BLUE "COTG - OFF - $arches"
   {
-  echo "[$today]"
-  echo "[COTG]"
-  echo ""
-  echo "[Changed From -> To]"
-  echo "# bhuschle ->"
-  echo "Primary: $user_off"
-  echo "Secondary: Team"
+    echo "[ $today ]"
+    echo -e "[ COTG ]\n[ From -> To ]"
+    echo -e "[ $user -> $1 ]\n"
+    echo -e "[ Lookout ]\n$arch_lookout\n"
+    echo -e "[ Notables ]\n${arch_notables[0]}\n${arch_notables[1]}\n"
+    echo -e "[ Peer Review ]\n$arch_peer_review\n"
+  } | gpg --clearsign
 
-  echo " "
+  print_line_sep
+  print_color $GREEN "HAVE A GOOD DAY $user"
+}
 
-  while IFS= read -r line; do
-    if [ "$line" = "$vsoc" ]; then
-      cotg=0
-      continue
-    elif [ "$line" = "$code_1" ]; then
-      cotg=1
-      continue
-    elif [ "$line" = "$code_2" ]; then
-      cotg=2
-      continue
-    else
-      if [ $cotg -eq 1 ]; then
-        echo "$line"
-      else
-        continue
-      fi
-    fi
-  done < "$input"
+# Main script
+# Print header
+print_heading "GuardSight Changing Of The Guard ( COTG )"
 
-  echo " "
-  }>tempfile2.txt
-  cat tempfile2.txt | gpg --clearsign
-  echo "$col_2"
-  echo "_________________________________________________"
-  echo "$col_3"
-
-   # Echo CODE_2 message to $user and encrypt with gpg
-  echo "COTG - OFF - $code_2"
-  echo "_________________________________________________"
-  echo "$col_5"
-
-  # CODE_2 COTG OFF
-  {
-  echo "[$today]"
-  echo "[COTG]"
-  echo ""
-  echo "[Changed From -> To]"
-  echo "# bhuschle ->"
-  echo "Primary: $user_off"
-  echo "Secondary: Team"
-
-  echo " "
-
-  while IFS= read -r line; do
-    if [ "$line" = "$vsoc" ]; then
-      cotg=0
-      continue
-    elif [ "$line" = "$code_1" ]; then
-      cotg=1
-      continue
-    elif [ "$line" = "$code_2" ]; then
-      cotg=2
-      continue
-    else
-      if [ $cotg -eq 2 ]; then
-        echo "$line"
-      else
-        continue
-      fi
-    fi
-  done < "$input"
-
-  echo " "
-  }>tempfile3.txt
-  cat tempfile3.txt | gpg --clearsign
-  echo "$col_3"
-  echo "_________________________________________________"
-  echo "$col_1"
-  echo "HAVE A GOOD DAY $user"
-  echo "$col_5"
-
-  # Remove the temp files so that they do not clutter
-  rm -r tempfile1.txt
-  rm -r tempfile2.txt
-  rm -r tempfile3.txt
+# Check input parameters
+if [ "$1" = "on" ]; then
+  handle_on
+elif [ "$1" = "off" ]; then
+  handle_off $2
+else
+  echo "Error: Invalid input parameter."
+  exit 1
 fi
