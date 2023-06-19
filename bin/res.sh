@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Source the helper.sh file
-source /media/bh/Dev/scripts/helper.sh
+source /path/to/helper.sh
 
 # Define the menu options
 options=(
