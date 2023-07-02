@@ -20,15 +20,19 @@ declare -A printed_urls
 
 # Set color for headers
 BLUE='\033[0;34m'
-RED='\033[0;33m'
+RED='\033[0;31m'
 NC='\033[0m' # No Color
 
 # Loop over each asset
 for asset in "${assets[@]}"
 do
-    # Print the asset name as a header to the output file with color
-    echo -e "${BLUE}Asset Name: $asset${NC}" >> $output_file
-    echo -e "${RED}---------------------${NC}" >> $output_file
+    # Print the asset name as a header to the terminal with color
+    echo -e "${BLUE}Asset Name: $asset${NC}"
+    echo -e "${RED}---------------------${NC}"
+
+    # Print the asset name as a header to the output file without color
+    echo "Asset Name: $asset" >> $output_file
+    echo "---------------------" >> $output_file
 
     # Search the file for lines containing the asset name and do not contain 'new hits'
     # Append these lines to the output file
@@ -43,12 +47,16 @@ do
         # Check if the URL has already been printed
         if [ -z "${printed_urls[$url]}" ]
         then
-            # If not, print the URL and add it to the associative array of printed URLs
+            # If not, print the URL to the terminal and add it to the associative array of printed URLs
+            echo $url
+            # Print the URL to the file
             echo $url >> $output_file
             printed_urls[$url]=1
         fi
     done
 
     # Print a newline for formatting
+    echo "" 
     echo "" >> $output_file
 done
+
